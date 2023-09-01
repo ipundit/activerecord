@@ -38,6 +38,12 @@ class ActiveRecordFindTest extends DatabaseTestCase
         }
     }
 
+    public function test_find_by_conditions()
+    {
+        $author = Author::find(['conditions'=>["author_id = (?)", 3]]);
+        $this->assertEquals(3, $author->id);
+    }
+
     public function test_find_by_pk_with_options()
     {
         $author = Author::find(3, ['order' => 'name']);

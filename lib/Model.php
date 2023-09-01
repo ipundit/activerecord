@@ -1706,10 +1706,10 @@ class Model
     {
         $class = get_called_class();
 
-        if (func_num_args() <= 0) {
+        $args = func_get_args();
+        if (count($args) <= 0) {
             throw new RecordNotFound("Couldn't find $class without an ID");
         }
-        $args = func_get_args();
         $options = static::extract_and_validate_options($args);
 
         $num_args = count($args);
@@ -1743,11 +1743,10 @@ class Model
 
         //find by pk
         else {
-            if (1 === count($args) && 1 == $num_args) {
+            if ($num_args === 1) {
                 $args = $args[0];
-            }
-
-            if (is_array($args) && array_values($args)==$args) {
+            } 
+            if (is_array($args) && count($args) > 1 && array_values($args) == $args) {
                 $single = false;
             }
         }
