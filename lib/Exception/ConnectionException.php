@@ -7,6 +7,6 @@ namespace ActiveRecord\Exception;
  *
  * @package ActiveRecord
  */
-class ExpressionsException extends ActiveRecordException
+class ConnectionException extends ActiveRecordException
 {
 }

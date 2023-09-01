@@ -5,8 +5,6 @@
 
 namespace ActiveRecord;
 
-use DateTimeZone;
-
 /**
  * Interface for the ActiveRecord\DateTime class so that ActiveRecord\Model->assign_attribute() will
  * know to call attribute_of() on passed values. This is so the DateTime object can flag the model
@@ -20,19 +18,16 @@ interface DateTimeInterface
 {
     /**
      * Indicates this object is an attribute of the specified model, with the given attribute name.
-     *
-     * @param Model  $model          The model this object is an attribute of
-     * @param string $attribute_name The attribute name
      */
-    public function attribute_of($model, $attribute_name);
+    public function attribute_of(Model $model, string $attribute_name): void;
 
     /**
      * Formats the DateTime to the specified format.
      */
-    public function format(string $format=''): string;
+    public function format(string $format = ''): string;
 
     /**
      * See http://php.net/manual/en/datetime.createfromformat.php
      */
-    public static function createFromFormat(string $format, string $time, DateTimeZone|null $timezone = null);
+    public static function createFromFormat(string $format, string $time, \DateTimeZone $timezone = null): static;
 }
